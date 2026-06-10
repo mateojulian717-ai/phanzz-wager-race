@@ -111,6 +111,7 @@ function CountdownTimer() {
 }
 
 function MainContent() {
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary/30">
       {/* Background Effects */}
@@ -227,7 +228,8 @@ function MainContent() {
                 size="lg" 
                 className="w-full md:w-auto bg-foreground text-background hover:bg-foreground/90 font-bold"
                 onClick={() => {
-                  document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' });
+                  setShowLeaderboard(true);
+                  setTimeout(() => document.getElementById('leaderboard')?.scrollIntoView({ behavior: 'smooth' }), 50);
                 }}
               >
                 View Leaderboard <ChevronRight className="w-5 h-5 ml-1" />
@@ -259,6 +261,7 @@ function MainContent() {
         </section>
 
         {/* Leaderboard Section */}
+        {showLeaderboard && (
         <section id="leaderboard" className="py-20 px-4">
           <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-12">
@@ -324,6 +327,7 @@ function MainContent() {
             </div>
           </div>
         </section>
+        )}
       </main>
 
       {/* Footer */}
