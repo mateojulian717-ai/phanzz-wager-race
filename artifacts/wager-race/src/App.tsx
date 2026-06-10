@@ -298,17 +298,17 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
         </section>
 
         <section className="py-10 px-4">
-          <div className="container mx-auto max-w-3xl grid grid-cols-2 gap-4">
+          <div className="container mx-auto max-w-3xl flex gap-4 justify-center">
             {/* Gamba card */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-8 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group aspect-square"
+              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-6 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group aspect-square max-w-[220px] w-full"
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
-              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
+              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[110px] object-contain" />
               <div className="text-center mt-auto pt-6">
                 <p className="text-sm text-muted-foreground mb-3">$7,500 · Top 10 Paid</p>
                 <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
@@ -322,7 +322,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.22 }}
-              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-8 opacity-40 cursor-not-allowed select-none aspect-square"
+              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-6 opacity-40 cursor-not-allowed select-none aspect-square max-w-[220px] w-full"
             >
               <Dices className="w-10 h-10 text-muted-foreground/30 mb-4" />
               <p className="font-bold text-muted-foreground text-lg">More casinos</p>
