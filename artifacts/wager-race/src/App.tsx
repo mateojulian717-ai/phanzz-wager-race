@@ -133,7 +133,7 @@ function MainContent() {
           </div>
           
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="hidden sm:flex border-primary/30 hover:border-primary/60 hover:bg-primary/10 text-foreground transition-all">
+            <Button variant="outline" className="hidden sm:flex border-primary/30 hover:border-primary/60 hover:bg-primary/10 text-foreground transition-all" onClick={() => window.open("https://x.com/brandixslots", "_blank")}>
               <Dices className="w-4 h-4 mr-2" />
               Play on Gamba
             </Button>
