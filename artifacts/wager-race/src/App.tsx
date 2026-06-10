@@ -129,6 +129,17 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
       className="min-h-screen bg-background text-foreground font-sans"
     >
       {BG_EFFECTS}
+      {/* Gamba logo tiled background */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: 'url(/gamba-logo.png)',
+          backgroundRepeat: 'repeat',
+          backgroundSize: '220px',
+          opacity: 0.04,
+          filter: 'blur(2px) grayscale(100%)',
+        }}
+      />
       {/* Minimal header — logo acts as back button */}
       <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
