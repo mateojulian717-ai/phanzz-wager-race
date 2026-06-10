@@ -298,42 +298,35 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
         </section>
 
         <section className="py-10 px-4">
-          <div className="container mx-auto max-w-2xl flex flex-col gap-3">
-            {/* Gamba row */}
+          <div className="container mx-auto max-w-3xl grid grid-cols-2 gap-4">
+            {/* Gamba card */}
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="flex items-center justify-between bg-card border border-primary/20 rounded-xl px-5 py-4 hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer group"
+              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-8 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group aspect-square"
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
-              <div className="flex items-center gap-4">
-                <img src="/gamba-logo.png" alt="Gamba" className="h-7 w-auto object-contain shrink-0" />
-                <p className="text-xs text-muted-foreground">$7,500 · Top 10 Paid</p>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                View leaderboard <ChevronRight className="w-4 h-4" />
+              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
+              <div className="text-center mt-auto pt-6">
+                <p className="text-sm text-muted-foreground mb-3">$7,500 · Top 10 Paid</p>
+                <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                  View leaderboard <ChevronRight className="w-4 h-4" />
+                </div>
               </div>
             </motion.div>
 
-            {/* Coming soon row */}
+            {/* Coming soon card */}
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.22 }}
-              className="flex items-center justify-between bg-card/30 border border-border/20 rounded-xl px-5 py-4 opacity-40 cursor-not-allowed select-none"
+              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-8 opacity-40 cursor-not-allowed select-none aspect-square"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-lg bg-background/40 border border-border/20 flex items-center justify-center shrink-0">
-                  <Dices className="w-4 h-4 text-muted-foreground/40" />
-                </div>
-                <div>
-                  <p className="font-bold text-muted-foreground">More casinos</p>
-                  <p className="text-xs text-muted-foreground/50">Coming soon</p>
-                </div>
-              </div>
-              <span className="text-xs font-bold uppercase tracking-widest text-primary/50">Soon</span>
+              <Dices className="w-10 h-10 text-muted-foreground/30 mb-4" />
+              <p className="font-bold text-muted-foreground text-lg">More casinos</p>
+              <span className="text-xs font-bold uppercase tracking-widest text-primary/50 mt-2">Coming soon</span>
             </motion.div>
           </div>
         </section>
