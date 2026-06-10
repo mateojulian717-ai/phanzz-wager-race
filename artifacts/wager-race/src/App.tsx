@@ -338,19 +338,6 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
         </section>
       </main>
 
-      <footer className="border-t border-border/50 py-12 px-4 bg-background relative z-10">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="Phanzz Logo" className="w-6 h-6 object-contain grayscale opacity-50" />
-            <span className="font-bold text-muted-foreground">PHANZZ</span>
-          </div>
-          <div className="text-sm text-muted-foreground text-center md:text-left">Official Wager Race. Must be 18+ to play. Please gamble responsibly.</div>
-          <div className="flex gap-4">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Gamba</a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">Kick</a>
-          </div>
-        </div>
-      </footer>
     </motion.div>
   );
 }
