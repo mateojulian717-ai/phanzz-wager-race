@@ -134,8 +134,8 @@ function MainContent() {
           
           <div className="flex items-center gap-3">
             <Button variant="outline" className="hidden sm:flex border-primary/30 hover:border-primary/60 hover:bg-primary/10 text-foreground transition-all" onClick={() => window.open("https://x.com/brandixslots", "_blank")}>
-              <Dices className="w-4 h-4 mr-2" />
-              Play on Gamba
+              <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.265 5.638L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+              Follow on X
             </Button>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-[0_0_15px_rgba(236,72,153,0.4)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)] transition-all" onClick={() => window.open("https://kick.com/phanzz", "_blank")}>
               Join my Kick
