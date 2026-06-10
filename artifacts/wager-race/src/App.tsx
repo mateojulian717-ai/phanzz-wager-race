@@ -327,7 +327,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
-              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[110px] object-contain" />
+              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
               <div className="text-center mt-auto pt-6">
                 <p className="text-sm text-muted-foreground mb-3">$7,500 · Top 10 Paid</p>
                 <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
