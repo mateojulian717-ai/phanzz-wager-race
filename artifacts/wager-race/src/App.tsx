@@ -202,7 +202,7 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
               { label: "Prize Pool", value: "$7,500" },
               { label: "Top Paid",   value: "Top 10" },
               { label: "Participants", value: "347" },
-              { label: "Total Wager", value: "$472,847" },
+              { label: "Total Wager", value: "$472,847.59" },
             ].map((stat) => (
               <div key={stat.label} className="bg-card border border-border/50 rounded-xl px-4 py-3 text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{stat.label}</p>
