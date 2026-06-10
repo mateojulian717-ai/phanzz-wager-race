@@ -39,13 +39,10 @@ const PLAYERS = [
 ];
 
 function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({ days: 20, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ days: 20, hours: 7, minutes: 49, seconds: 0 });
 
   useEffect(() => {
-    // Fake a target date
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 20);
-    targetDate.setHours(0, 0, 0, 0);
+    const targetDate = new Date("2026-06-30T23:59:59-03:00");
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -110,7 +107,7 @@ function CountdownTimer() {
 }
 
 function CompactCountdown() {
-  const TARGET = new Date("2026-06-30T00:00:00");
+  const TARGET = new Date("2026-06-30T23:59:59-03:00");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
     const tick = () => {
