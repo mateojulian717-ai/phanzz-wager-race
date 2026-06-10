@@ -283,9 +283,6 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
         <section className="pt-28 pb-20 px-4">
           <div className="container mx-auto max-w-3xl text-center">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <Badge variant="outline" className="mb-8 px-4 py-1.5 border-primary/50 text-primary bg-primary/10 uppercase tracking-widest text-xs font-bold">
-                <Star className="w-3 h-3 mr-2 inline" /> Wager Races
-              </Badge>
               <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter mb-6">
                 Monthly<br/>
                 <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">Wager Races</span>
