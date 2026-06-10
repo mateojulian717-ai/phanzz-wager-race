@@ -189,8 +189,8 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
           <div className="text-center mb-8">
             <h2 className="text-4xl font-black mb-2 uppercase tracking-tight">Current Standings</h2>
             <p className="text-muted-foreground mb-5">The race is hot. Keep wagering to secure your spot in the top 10.</p>
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/30 bg-primary/5 text-sm font-medium">
-              <Activity className="w-4 h-4 text-primary animate-pulse shrink-0" />
+            <div className="inline-flex items-center gap-2 text-sm">
+              <Activity className="w-3.5 h-3.5 text-primary animate-pulse shrink-0" />
               <span className="text-muted-foreground uppercase tracking-widest text-xs">Race ends in</span>
               <CompactCountdown />
             </div>
