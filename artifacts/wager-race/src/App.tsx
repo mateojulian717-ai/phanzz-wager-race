@@ -280,43 +280,20 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
       </header>
 
       <main className="flex-1 relative z-10">
-        <section className="pt-24 pb-16 px-4">
-          <div className="container mx-auto max-w-5xl">
-            <div className="flex flex-col lg:flex-row gap-12 items-center">
-              <div className="flex-1 space-y-8 text-center lg:text-left">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                  <Badge variant="outline" className="mb-6 px-4 py-1.5 border-primary/50 text-primary bg-primary/10 uppercase tracking-widest text-xs font-bold">
-                    <Star className="w-3 h-3 mr-2 inline" /> Official Event
-                  </Badge>
-                  <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary/50">
-                    $7,500 <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">GAMBA</span> <br/>WAGER RACE
-                  </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-                    Compete with the community, wager on your favorite games, and climb the leaderboard for massive prizes.
-                  </p>
-                </motion.div>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
-                    <DollarSign className="w-8 h-8 text-primary mb-3" />
-                    <div className="text-2xl font-bold">$7,500</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">Prize Pool</div>
-                  </div>
-                  <div className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
-                    <Users className="w-8 h-8 text-primary mb-3" />
-                    <div className="text-2xl font-bold">Top 10</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">Paid Players</div>
-                  </div>
-                  <div className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-5 hover:border-primary/40 transition-colors">
-                    <Dices className="w-8 h-8 text-primary mb-3" />
-                    <div className="text-2xl font-bold">Gamba</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">Casino</div>
-                  </div>
-                </motion.div>
-              </div>
-              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} className="w-full lg:w-[400px] shrink-0">
-                <CountdownTimer />
-              </motion.div>
-            </div>
+        <section className="pt-28 pb-20 px-4">
+          <div className="container mx-auto max-w-3xl text-center">
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <Badge variant="outline" className="mb-8 px-4 py-1.5 border-primary/50 text-primary bg-primary/10 uppercase tracking-widest text-xs font-bold">
+                <Star className="w-3 h-3 mr-2 inline" /> Wager Races
+              </Badge>
+              <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter mb-6">
+                Gana premios<br/>
+                <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">cada mes</span>
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
+                Cada mes reparto miles de dólares en premios entre los mejores jugadores. Jugá en los casinos seleccionados, acumulá wager y trepá al leaderboard.
+              </p>
+            </motion.div>
           </div>
         </section>
 
