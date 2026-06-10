@@ -16,26 +16,26 @@ const queryClient = new QueryClient();
 const maskName = (name: string) => name.slice(0, 2) + "*".repeat(name.length - 2);
 
 const PLAYERS = [
-  { rank: 1, name: maskName("RaffaKing"), wagered: "$70,842", prize: "$2,000" },
-  { rank: 2, name: maskName("SlotHunter"), wagered: "$31,475", prize: "$1,500" },
-  { rank: 3, name: maskName("PanteraVIP"), wagered: "$25,930", prize: "$1,000" },
-  { rank: 4, name: maskName("MaxWinz"), wagered: "$17,820", prize: "$750" },
-  { rank: 5, name: maskName("GambaLord"), wagered: "$13,640", prize: "$600" },
-  { rank: 6, name: maskName("TurboSpin"), wagered: "$11,275", prize: "$500" },
-  { rank: 7, name: maskName("LuckyMati"), wagered: "$9,842", prize: "$400" },
-  { rank: 8, name: maskName("JuaniSlots"), wagered: "$8,110", prize: "$300" },
-  { rank: 9, name: maskName("CryptoNico"), wagered: "$7,455", prize: "$250" },
-  { rank: 10, name: maskName("BetWizard"), wagered: "$6,280", prize: "$200" },
-  { rank: 11, name: maskName("AgusGamble"), wagered: "$5,740", prize: "-" },
-  { rank: 12, name: maskName("TheRusher"), wagered: "$5,180", prize: "-" },
-  { rank: 13, name: maskName("LuchoFan"), wagered: "$4,625", prize: "-" },
-  { rank: 14, name: maskName("SpinMaster"), wagered: "$4,110", prize: "-" },
-  { rank: 15, name: maskName("GonzaBet"), wagered: "$3,780", prize: "-" },
-  { rank: 16, name: maskName("HighRollerX"), wagered: "$3,240", prize: "-" },
-  { rank: 17, name: maskName("NahuelWin"), wagered: "$2,915", prize: "-" },
-  { rank: 18, name: maskName("TinchoSlots"), wagered: "$2,380", prize: "-" },
-  { rank: 19, name: maskName("CasinoWolf"), wagered: "$1,840", prize: "-" },
-  { rank: 20, name: maskName("ModoBonus"), wagered: "$1,120", prize: "-" },
+  { rank: 1, name: maskName("RaffaKing"), wagered: "$80,842", prize: "$2,000" },
+  { rank: 2, name: maskName("SlotHunter"), wagered: "$41,475", prize: "$1,500" },
+  { rank: 3, name: maskName("PanteraVIP"), wagered: "$35,930", prize: "$1,000" },
+  { rank: 4, name: maskName("MaxWinz"), wagered: "$27,820", prize: "$750" },
+  { rank: 5, name: maskName("GambaLord"), wagered: "$23,640", prize: "$600" },
+  { rank: 6, name: maskName("TurboSpin"), wagered: "$21,275", prize: "$500" },
+  { rank: 7, name: maskName("LuckyMati"), wagered: "$19,842", prize: "$400" },
+  { rank: 8, name: maskName("JuaniSlots"), wagered: "$18,110", prize: "$300" },
+  { rank: 9, name: maskName("CryptoNico"), wagered: "$17,455", prize: "$250" },
+  { rank: 10, name: maskName("BetWizard"), wagered: "$16,280", prize: "$200" },
+  { rank: 11, name: maskName("AgusGamble"), wagered: "$15,740", prize: "-" },
+  { rank: 12, name: maskName("TheRusher"), wagered: "$15,180", prize: "-" },
+  { rank: 13, name: maskName("LuchoFan"), wagered: "$14,625", prize: "-" },
+  { rank: 14, name: maskName("SpinMaster"), wagered: "$14,110", prize: "-" },
+  { rank: 15, name: maskName("GonzaBet"), wagered: "$13,780", prize: "-" },
+  { rank: 16, name: maskName("HighRollerX"), wagered: "$13,240", prize: "-" },
+  { rank: 17, name: maskName("NahuelWin"), wagered: "$12,915", prize: "-" },
+  { rank: 18, name: maskName("TinchoSlots"), wagered: "$12,380", prize: "-" },
+  { rank: 19, name: maskName("CasinoWolf"), wagered: "$11,840", prize: "-" },
+  { rank: 20, name: maskName("ModoBonus"), wagered: "$11,120", prize: "-" },
 ];
 
 function CountdownTimer() {
@@ -206,7 +206,7 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
               { label: "Prize Pool", value: "$7,500" },
               { label: "Top Paid",   value: "Top 10" },
               { label: "Participants", value: "347" },
-              { label: "Total Wager", value: "$412,847" },
+              { label: "Total Wager", value: "$612,847" },
             ].map((stat) => (
               <div key={stat.label} className="bg-card border border-border/50 rounded-xl px-4 py-3 text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{stat.label}</p>
