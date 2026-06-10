@@ -309,13 +309,8 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               data-testid="button-view-leaderboard"
             >
               <div className="flex items-center gap-4">
-                <div className="w-9 h-9 rounded-lg bg-background border border-primary/30 flex items-center justify-center shrink-0">
-                  <Dices className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <p className="font-bold text-foreground group-hover:text-primary transition-colors">Gamba</p>
-                  <p className="text-xs text-muted-foreground">$7,500 · Top 10 Paid</p>
-                </div>
+                <img src="/gamba-logo.png" alt="Gamba" className="h-7 w-auto object-contain shrink-0" />
+                <p className="text-xs text-muted-foreground">$7,500 · Top 10 Paid</p>
               </div>
               <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
                 View leaderboard <ChevronRight className="w-4 h-4" />
