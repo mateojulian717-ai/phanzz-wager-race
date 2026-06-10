@@ -287,11 +287,11 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
                 <Star className="w-3 h-3 mr-2 inline" /> Wager Races
               </Badge>
               <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter mb-6">
-                Win prizes<br/>
-                <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">every month</span>
+                Monthly<br/>
+                <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">Wager Races</span>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                Every month I give away thousands of dollars in prizes to the top players. Play at the selected casinos, build up your wager and climb the leaderboard.
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed border-l-2 border-primary/50 pl-4 text-left">
+                Play, wager and compete for a share of the prize pool.
               </p>
             </motion.div>
           </div>
