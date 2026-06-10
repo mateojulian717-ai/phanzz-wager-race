@@ -110,6 +110,35 @@ function CountdownTimer() {
   );
 }
 
+function CompactCountdown() {
+  const TARGET = new Date("2026-06-17T00:00:00");
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const tick = () => {
+      const diff = TARGET.getTime() - Date.now();
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  const f = (n: number) => n.toString().padStart(2, "0");
+  return (
+    <span className="font-mono font-bold text-foreground tracking-widest">
+      {f(timeLeft.days)}<span className="text-primary mx-0.5">d</span>
+      {f(timeLeft.hours)}<span className="text-primary mx-0.5">h</span>
+      {f(timeLeft.minutes)}<span className="text-primary mx-0.5">m</span>
+      {f(timeLeft.seconds)}<span className="text-primary mx-0.5">s</span>
+    </span>
+  );
+}
+
 const BG_EFFECTS = (
   <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px]" />
@@ -158,15 +187,16 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
         </div>
       </header>
 
-      <main className="relative z-10 py-12 px-4">
+      <main className="relative z-10 py-10 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mb-10">
-            <div className="text-center lg:text-left">
-              <h2 className="text-4xl font-black mb-3 uppercase tracking-tight">Current Standings</h2>
-              <p className="text-muted-foreground">The race is hot. Keep wagering to secure your spot in the top 10.</p>
-            </div>
-            <div className="shrink-0 w-full lg:w-[340px]">
-              <CountdownTimer />
+          {/* Title + compact countdown */}
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-black mb-2 uppercase tracking-tight">Current Standings</h2>
+            <p className="text-muted-foreground mb-5">The race is hot. Keep wagering to secure your spot in the top 10.</p>
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/30 bg-primary/5 text-sm font-medium">
+              <Activity className="w-4 h-4 text-primary animate-pulse shrink-0" />
+              <span className="text-muted-foreground uppercase tracking-widest text-xs">Race ends in</span>
+              <CompactCountdown />
             </div>
           </div>
 
