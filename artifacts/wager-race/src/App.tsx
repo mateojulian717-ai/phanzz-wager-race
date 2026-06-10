@@ -303,12 +303,12 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
         <section className="pt-28 pb-20 px-4">
           <div className="container mx-auto max-w-3xl text-center">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter mb-6">
+              <h1 className="text-6xl md:text-8xl font-black leading-tight tracking-tighter mb-6">
                 Monthly<br/>
                 <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">Wager Races</span>
               </h1>
               <div className="flex justify-center">
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed border-l-2 border-r-2 border-primary/50 pl-4 pr-4 inline">
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed border-l-2 border-r-2 border-primary/50 pl-4 pr-4 inline">
                   Play, wager and compete for a share of the prize pool.
                 </p>
               </div>
@@ -323,7 +323,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-8 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group aspect-square max-w-[270px] w-full"
+              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-8 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group aspect-square max-w-[300px] w-full"
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
@@ -341,7 +341,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.22 }}
-              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-8 opacity-40 cursor-not-allowed select-none aspect-square max-w-[270px] w-full"
+              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-8 opacity-40 cursor-not-allowed select-none aspect-square max-w-[300px] w-full"
             >
               <Dices className="w-10 h-10 text-muted-foreground/30 mb-4" />
               <p className="font-bold text-muted-foreground text-lg">More casinos</p>
