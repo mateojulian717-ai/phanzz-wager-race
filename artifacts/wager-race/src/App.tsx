@@ -193,7 +193,6 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
             </div>
             <span className="font-bold text-xl tracking-tight hidden sm:inline-block group-hover:text-primary transition-colors">PHANZZ</span>
           </button>
-          <span className="text-sm text-muted-foreground font-medium uppercase tracking-widest">Gamba Wager Race</span>
         </div>
       </header>
 
