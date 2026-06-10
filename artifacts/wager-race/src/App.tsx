@@ -297,43 +297,49 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
           </div>
         </section>
 
-        <section className="py-12 px-4 border-y border-border/50 bg-card/20 backdrop-blur-md">
-          <div className="container mx-auto max-w-5xl flex flex-col gap-4">
-            <div className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-card to-card/50 border border-primary/20 rounded-2xl p-6 md:p-8 hover:shadow-[0_0_30px_rgba(236,72,153,0.1)] transition-all group">
-              <div className="flex items-center gap-6 mb-6 md:mb-0">
-                <div className="w-16 h-16 rounded-xl bg-background border border-primary/30 flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.2)]">
-                  <Dices className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+        <section className="py-10 px-4">
+          <div className="container mx-auto max-w-2xl flex flex-col gap-3">
+            {/* Gamba row */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="flex items-center justify-between bg-card border border-primary/20 rounded-xl px-5 py-4 hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer group"
+              onClick={onViewLeaderboard}
+              data-testid="button-view-leaderboard"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-9 h-9 rounded-lg bg-background border border-primary/30 flex items-center justify-center shrink-0">
+                  <Dices className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">Gamba Wager Race</h3>
-                  <div className="flex items-center gap-4 text-sm font-medium">
-                    <span className="text-green-400 flex items-center"><DollarSign className="w-4 h-4 mr-1"/> $7,500 Prize Pool</span>
-                    <span className="text-muted-foreground border-l border-border pl-4">Top 10 Paid</span>
-                  </div>
+                  <p className="font-bold text-foreground group-hover:text-primary transition-colors">Gamba</p>
+                  <p className="text-xs text-muted-foreground">$7,500 · Top 10 Paid</p>
                 </div>
               </div>
-              <Button size="lg" className="w-full md:w-auto bg-foreground text-background hover:bg-foreground/90 font-bold" onClick={onViewLeaderboard} data-testid="button-view-leaderboard">
-                View Leaderboard <ChevronRight className="w-5 h-5 ml-1" />
-              </Button>
-            </div>
-            <div className="flex flex-col md:flex-row items-center justify-between bg-card/30 border border-border/30 rounded-2xl p-6 md:p-8 opacity-60 cursor-not-allowed select-none relative overflow-hidden">
-              <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.015)_10px,rgba(255,255,255,0.015)_20px)]" />
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 rounded-xl bg-background/50 border border-border/30 flex items-center justify-center">
-                  <Dices className="w-8 h-8 text-muted-foreground/40" />
+              <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
+                Ver tabla <ChevronRight className="w-4 h-4" />
+              </div>
+            </motion.div>
+
+            {/* Coming soon row */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.22 }}
+              className="flex items-center justify-between bg-card/30 border border-border/20 rounded-xl px-5 py-4 opacity-40 cursor-not-allowed select-none"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-9 h-9 rounded-lg bg-background/40 border border-border/20 flex items-center justify-center shrink-0">
+                  <Dices className="w-4 h-4 text-muted-foreground/40" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-2xl font-bold text-muted-foreground">More Casinos</h3>
-                    <span className="text-xs font-bold uppercase tracking-widest bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded-full">Coming Soon</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground/60">New wager races dropping soon. Stay tuned.</p>
+                  <p className="font-bold text-muted-foreground">Más casinos</p>
+                  <p className="text-xs text-muted-foreground/50">Próximamente</p>
                 </div>
               </div>
-              <div className="mt-6 md:mt-0 w-full md:w-auto">
-                <Button size="lg" disabled className="w-full md:w-auto font-bold opacity-40 cursor-not-allowed">Coming Soon</Button>
-              </div>
-            </div>
+              <span className="text-xs font-bold uppercase tracking-widest text-primary/50">Soon</span>
+            </motion.div>
           </div>
         </section>
       </main>
