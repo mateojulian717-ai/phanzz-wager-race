@@ -160,9 +160,14 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
 
       <main className="relative z-10 py-12 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-4xl font-black mb-3 uppercase tracking-tight">Current Standings</h2>
-            <p className="text-muted-foreground">The race is hot. Keep wagering to secure your spot in the top 10.</p>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mb-10">
+            <div className="text-center lg:text-left">
+              <h2 className="text-4xl font-black mb-3 uppercase tracking-tight">Current Standings</h2>
+              <p className="text-muted-foreground">The race is hot. Keep wagering to secure your spot in the top 10.</p>
+            </div>
+            <div className="shrink-0 w-full lg:w-[340px]">
+              <CountdownTimer />
+            </div>
           </div>
 
           <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl relative">
