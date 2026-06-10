@@ -217,7 +217,7 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
 
           <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl relative">
             <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
-            <div className="overflow-x-auto">
+            <div>
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-muted/50 border-b border-border">
