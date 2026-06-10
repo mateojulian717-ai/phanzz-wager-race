@@ -145,7 +145,6 @@ function BigCountdown() {
           </div>
         ))}
       </div>
-      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mt-4">Started 01/06/2026</p>
     </div>
   );
 }
