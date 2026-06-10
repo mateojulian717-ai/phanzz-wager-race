@@ -1,0 +1,144 @@
+Quiero crear una página web profesional para una “Wager Race” de mi canal, enfocada en casino, usando estilo moderno, oscuro y verde, inspirada en páginas de casino crypto.
+
+La página debe llamarse:
+
+“Panterinsito Wager Race”
+
+Objetivo:
+Crear una leaderboard/race de apuestas para mi comunidad, donde los jugadores compiten por premios según su wager.
+
+Casino actual:
+Gamba
+
+Premios:
+Total prize pool: $7,500
+Hay 10 ganadores.
+
+Distribución de premios:
+1° $2,000
+2° $1,500
+3° $1,000
+4° $750
+5° $600
+6° $500
+7° $400
+8° $300
+9° $250
+10° $200
+
+Leaderboard:
+Mostrar del puesto 1 al 20.
+Los primeros 10 deben aparecer como ganadores con premio.
+Del puesto 11 al 20 deben aparecer sin premio.
+
+Usar jugadores falsos con nombres estilo casino/stream:
+
+1. RaffaKing
+2. SlotHunter
+3. PanteraVIP
+4. MaxWinz
+5. GambaLord
+6. TurboSpin
+7. LuckyMati
+8. JuaniSlots
+9. CryptoNico
+10. BetWizard
+11. AgusGamble
+12. TheRusher
+13. LuchoFan
+14. SpinMaster
+15. GonzaBet
+16. HighRollerX
+17. NahuelWin
+18. TinchoSlots
+19. CasinoWolf
+20. ModoBonus
+
+Usar valores falsos de wager variados y realistas, por ejemplo:
+1° $128,450
+2° $112,300
+3° $94,870
+4° $81,220
+5° $73,900
+6° $66,410
+7° $58,770
+8° $49,250
+9° $41,600
+10° $35,980
+11° $31,400
+12° $28,750
+13° $25,990
+14° $22,300
+15° $19,875
+16° $17,640
+17° $15,200
+18° $13,890
+19° $11,500
+20° $9,750
+
+Diseño:
+
+* Fondo oscuro premium.
+* Colores principales: negro, gris oscuro, verde neón y blanco.
+* Estilo casino crypto moderno.
+* Header con logo de mi canal a la izquierda.
+* Botón visible para ir a mi canal de Kick.
+* Link de Kick: PEGAR_ACA_MI_LINK_DE_KICK
+* Botón principal: “Join my Kick”
+* Botón secundario: “Play on Gamba”
+* Sección hero con título grande: “$7,500 Gamba Wager Race”
+* Subtítulo: “Compete with the community and climb the leaderboard.”
+* Card destacada con “Prize Pool $7,500”.
+* Card destacada con “Top 10 Paid”.
+* Card destacada con “Casino: Gamba”.
+* Agregar contador falso de tiempo restante para que se vea profesional, por ejemplo “Race ends in: 06d 12h 45m”.
+
+Loader:
+Al cargar la página, mostrar una pantalla de carga de 1 a 2 segundos con el logo de mi canal en el centro.
+El logo debe tener una animación suave tipo pulso/glow verde.
+Luego aparece la página principal.
+
+Logo:
+Voy a subir el logo de mi canal como imagen al proyecto.
+Usar el archivo del logo en el loader y también en el header.
+Dejar el código preparado para usar una imagen llamada:
+logo.png
+
+Sección casinos:
+Tiene que haber una sección llamada “Choose your casino race”.
+Por ahora solo debe aparecer una card de Gamba.
+La card debe decir:
+“Gamba Wager Race”
+“$7,500 Prize Pool”
+“Top 10 Paid”
+Botón: “View Race”
+Cuando se toque, debe llevar a la leaderboard de Gamba en la misma página o hacer scroll hacia ella.
+
+Leaderboard:
+Crear una tabla moderna con:
+
+* Rank
+* Player
+* Wagered
+* Prize
+
+Los puestos 1, 2 y 3 deben estar destacados con íconos o colores especiales.
+Los primeros 10 deben tener premio.
+Del 11 al 20 debe decir “-” en prize.
+
+Responsive:
+Debe verse bien en PC y celular.
+En celular la tabla debe adaptarse sin romperse.
+
+Tecnología:
+Crear el proyecto completo en React + Vite.
+Usar Tailwind CSS para el diseño.
+El resultado debe poder subirse fácilmente a Vercel.
+
+Extra:
+
+* Agregar animaciones suaves al entrar las cards.
+* Agregar hover en botones y cards.
+* No usar backend por ahora, todo puede estar con datos falsos dentro del frontend.
+* Organizar el código limpio en componentes si es posible.
+* Que la página se vea lista para usar como página oficial de una race.
