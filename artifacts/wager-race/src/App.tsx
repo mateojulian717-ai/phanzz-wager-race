@@ -200,6 +200,21 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
             </div>
           </div>
 
+          {/* Stats row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            {[
+              { label: "Prize Pool", value: "$7,500" },
+              { label: "Top Paid",   value: "Top 10" },
+              { label: "Participants", value: "347" },
+              { label: "Total Wager", value: "$412,847" },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-card border border-border/50 rounded-xl px-4 py-3 text-center">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{stat.label}</p>
+                <p className="text-lg font-bold text-foreground">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+
           <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl relative">
             <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
             <div className="overflow-x-auto">
