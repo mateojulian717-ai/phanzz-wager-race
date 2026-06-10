@@ -323,11 +323,11 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-8 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group w-[300px] h-[300px] overflow-hidden shrink-0"
+              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-8 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group w-[340px] h-[340px] overflow-hidden shrink-0"
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
-              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[120px] object-contain" />
+              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
 
               <div className="w-full flex flex-col items-center gap-1.5">
                 <p className="text-2xl font-black text-foreground tracking-tight">$7,500</p>
@@ -348,7 +348,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.22 }}
-              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-8 opacity-40 cursor-not-allowed select-none w-[300px] h-[300px] overflow-hidden shrink-0"
+              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-8 opacity-40 cursor-not-allowed select-none w-[340px] h-[340px] overflow-hidden shrink-0"
             >
               <Dices className="w-10 h-10 text-muted-foreground/30 mb-4" />
               <p className="font-bold text-muted-foreground text-lg">More casinos</p>
