@@ -138,7 +138,7 @@ function MainContent() {
               Follow on X
             </Button>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-[0_0_15px_rgba(236,72,153,0.4)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)] transition-all" onClick={() => window.open("https://kick.com/phanzz", "_blank")}>
-              <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M3 2h4v8l5-8h4.5L11 10.5 16.5 22H12l-5-8v8H3V2z"/></svg>
+              <img src="/kick-logo.png" alt="Kick" className="w-4 h-4 mr-2 object-contain" />
               Join my Kick
             </Button>
           </div>
