@@ -287,11 +287,11 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
                 <Star className="w-3 h-3 mr-2 inline" /> Wager Races
               </Badge>
               <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter mb-6">
-                Gana premios<br/>
-                <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">cada mes</span>
+                Win prizes<br/>
+                <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">every month</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                Cada mes reparto miles de dólares en premios entre los mejores jugadores. Jugá en los casinos seleccionados, acumulá wager y trepá al leaderboard.
+                Every month I give away thousands of dollars in prizes to the top players. Play at the selected casinos, build up your wager and climb the leaderboard.
               </p>
             </motion.div>
           </div>
@@ -318,7 +318,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
                 </div>
               </div>
               <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                Ver tabla <ChevronRight className="w-4 h-4" />
+                View leaderboard <ChevronRight className="w-4 h-4" />
               </div>
             </motion.div>
 
@@ -334,8 +334,8 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
                   <Dices className="w-4 h-4 text-muted-foreground/40" />
                 </div>
                 <div>
-                  <p className="font-bold text-muted-foreground">Más casinos</p>
-                  <p className="text-xs text-muted-foreground/50">Próximamente</p>
+                  <p className="font-bold text-muted-foreground">More casinos</p>
+                  <p className="text-xs text-muted-foreground/50">Coming soon</p>
                 </div>
               </div>
               <span className="text-xs font-bold uppercase tracking-widest text-primary/50">Soon</span>
