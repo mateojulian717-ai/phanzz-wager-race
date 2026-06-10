@@ -205,7 +205,8 @@ function MainContent() {
 
         {/* Casino Race Card Section */}
         <section className="py-12 px-4 border-y border-border/50 bg-card/20 backdrop-blur-md">
-          <div className="container mx-auto max-w-5xl">
+          <div className="container mx-auto max-w-5xl flex flex-col gap-4">
+            {/* Gamba card */}
             <div className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-card to-card/50 border border-primary/20 rounded-2xl p-6 md:p-8 hover:shadow-[0_0_30px_rgba(236,72,153,0.1)] transition-all group">
               <div className="flex items-center gap-6 mb-6 md:mb-0">
                 <div className="w-16 h-16 rounded-xl bg-background border border-primary/30 flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.2)]">
@@ -228,6 +229,28 @@ function MainContent() {
               >
                 View Leaderboard <ChevronRight className="w-5 h-5 ml-1" />
               </Button>
+            </div>
+
+            {/* Coming soon card */}
+            <div className="flex flex-col md:flex-row items-center justify-between bg-card/30 border border-border/30 rounded-2xl p-6 md:p-8 opacity-60 cursor-not-allowed select-none relative overflow-hidden">
+              <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.015)_10px,rgba(255,255,255,0.015)_20px)]" />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-xl bg-background/50 border border-border/30 flex items-center justify-center">
+                  <Dices className="w-8 h-8 text-muted-foreground/40" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-2xl font-bold text-muted-foreground">More Casinos</h3>
+                    <span className="text-xs font-bold uppercase tracking-widest bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded-full">Coming Soon</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground/60">New wager races dropping soon. Stay tuned.</p>
+                </div>
+              </div>
+              <div className="mt-6 md:mt-0 w-full md:w-auto">
+                <Button size="lg" disabled className="w-full md:w-auto font-bold opacity-40 cursor-not-allowed">
+                  Coming Soon
+                </Button>
+              </div>
             </div>
           </div>
         </section>
