@@ -106,7 +106,7 @@ function CountdownTimer() {
   );
 }
 
-function CompactCountdown() {
+function BigCountdown() {
   const TARGET = new Date("2026-06-30T23:59:59-03:00");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
@@ -125,13 +125,28 @@ function CompactCountdown() {
     return () => clearInterval(id);
   }, []);
   const f = (n: number) => n.toString().padStart(2, "0");
+  const units = [
+    { value: f(timeLeft.days), label: "DAYS" },
+    { value: f(timeLeft.hours), label: "HRS" },
+    { value: f(timeLeft.minutes), label: "MIN" },
+    { value: f(timeLeft.seconds), label: "SEC" },
+  ];
   return (
-    <span className="font-mono font-bold text-foreground tracking-widest">
-      {f(timeLeft.days)}<span className="text-primary mx-0.5">d</span>
-      {f(timeLeft.hours)}<span className="text-primary mx-0.5">h</span>
-      {f(timeLeft.minutes)}<span className="text-primary mx-0.5">m</span>
-      {f(timeLeft.seconds)}<span className="text-primary mx-0.5">s</span>
-    </span>
+    <div className="text-center">
+      <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">Ending in</p>
+      <div className="flex items-start justify-center gap-1">
+        {units.map((u, i) => (
+          <div key={u.label} className="flex items-start gap-1">
+            <div className="flex flex-col items-center w-16 md:w-20">
+              <span className="font-black text-4xl md:text-5xl text-foreground tabular-nums leading-none">{u.value}</span>
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1.5">{u.label}</span>
+            </div>
+            {i < 3 && <span className="text-primary font-black text-3xl md:text-4xl leading-none mt-0.5">:</span>}
+          </div>
+        ))}
+      </div>
+      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mt-4">Started 01/06/2026</p>
+    </div>
   );
 }
 
@@ -185,15 +200,11 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
 
       <main className="relative z-10 py-10 px-4">
         <div className="container mx-auto max-w-4xl">
-          {/* Title + compact countdown */}
+          {/* Title + big countdown */}
           <div className="text-center mb-8">
             <h2 className="text-4xl font-black mb-2 uppercase tracking-tight">Current Standings</h2>
-            <p className="text-muted-foreground mb-5">The race is hot. Keep wagering to secure your spot in the top 10.</p>
-            <div className="inline-flex items-center gap-2 text-sm">
-              <Activity className="w-3.5 h-3.5 text-primary animate-pulse shrink-0" />
-              <span className="text-muted-foreground uppercase tracking-widest text-xs">Race ends in</span>
-              <CompactCountdown />
-            </div>
+            <p className="text-muted-foreground mb-8">The race is hot. Keep wagering to secure your spot in the top 10.</p>
+            <BigCountdown />
           </div>
 
           {/* Stats row */}
