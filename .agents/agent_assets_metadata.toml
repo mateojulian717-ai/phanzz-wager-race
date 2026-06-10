@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "XI5-7LVueZYbtNpMoNxqZ"
+uri = "file://wager-race.zip"
+type = "unspecified"
+title = "wager-race — proyecto standalone"
