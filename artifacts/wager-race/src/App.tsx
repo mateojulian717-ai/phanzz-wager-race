@@ -13,7 +13,7 @@ import NotFound from "@/pages/not-found";
 const queryClient = new QueryClient();
 
 // Hardcoded Data
-const maskName = (name: string) => name.slice(0, 2) + "***";
+const maskName = (name: string) => name.slice(0, 2) + "*".repeat(name.length - 2);
 
 const PLAYERS = [
   { rank: 1, name: maskName("RaffaKing"), wagered: "$70,842", prize: "$2,000" },
