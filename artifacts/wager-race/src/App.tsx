@@ -137,7 +137,7 @@ function MainContent() {
               <Dices className="w-4 h-4 mr-2" />
               Play on Gamba
             </Button>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-[0_0_15px_rgba(236,72,153,0.4)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)] transition-all">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-[0_0_15px_rgba(236,72,153,0.4)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)] transition-all" onClick={() => window.open("https://kick.com/phanzz", "_blank")}>
               Join my Kick
             </Button>
           </div>
