@@ -13,27 +13,29 @@ import NotFound from "@/pages/not-found";
 const queryClient = new QueryClient();
 
 // Hardcoded Data
+const maskName = (name: string) => name.slice(0, 2) + "***";
+
 const PLAYERS = [
-  { rank: 1, name: "RaffaKing", wagered: "$128,450", prize: "$2,000" },
-  { rank: 2, name: "SlotHunter", wagered: "$112,300", prize: "$1,500" },
-  { rank: 3, name: "PanteraVIP", wagered: "$94,870", prize: "$1,000" },
-  { rank: 4, name: "MaxWinz", wagered: "$81,220", prize: "$750" },
-  { rank: 5, name: "GambaLord", wagered: "$73,900", prize: "$600" },
-  { rank: 6, name: "TurboSpin", wagered: "$66,410", prize: "$500" },
-  { rank: 7, name: "LuckyMati", wagered: "$58,770", prize: "$400" },
-  { rank: 8, name: "JuaniSlots", wagered: "$49,250", prize: "$300" },
-  { rank: 9, name: "CryptoNico", wagered: "$41,600", prize: "$250" },
-  { rank: 10, name: "BetWizard", wagered: "$35,980", prize: "$200" },
-  { rank: 11, name: "AgusGamble", wagered: "$31,400", prize: "-" },
-  { rank: 12, name: "TheRusher", wagered: "$28,750", prize: "-" },
-  { rank: 13, name: "LuchoFan", wagered: "$25,990", prize: "-" },
-  { rank: 14, name: "SpinMaster", wagered: "$22,300", prize: "-" },
-  { rank: 15, name: "GonzaBet", wagered: "$19,875", prize: "-" },
-  { rank: 16, name: "HighRollerX", wagered: "$17,640", prize: "-" },
-  { rank: 17, name: "NahuelWin", wagered: "$15,200", prize: "-" },
-  { rank: 18, name: "TinchoSlots", wagered: "$13,890", prize: "-" },
-  { rank: 19, name: "CasinoWolf", wagered: "$11,500", prize: "-" },
-  { rank: 20, name: "ModoBonus", wagered: "$9,750", prize: "-" },
+  { rank: 1, name: maskName("RaffaKing"), wagered: "$70,842", prize: "$2,000" },
+  { rank: 2, name: maskName("SlotHunter"), wagered: "$31,475", prize: "$1,500" },
+  { rank: 3, name: maskName("PanteraVIP"), wagered: "$25,930", prize: "$1,000" },
+  { rank: 4, name: maskName("MaxWinz"), wagered: "$17,820", prize: "$750" },
+  { rank: 5, name: maskName("GambaLord"), wagered: "$13,640", prize: "$600" },
+  { rank: 6, name: maskName("TurboSpin"), wagered: "$11,275", prize: "$500" },
+  { rank: 7, name: maskName("LuckyMati"), wagered: "$9,842", prize: "$400" },
+  { rank: 8, name: maskName("JuaniSlots"), wagered: "$8,110", prize: "$300" },
+  { rank: 9, name: maskName("CryptoNico"), wagered: "$7,455", prize: "$250" },
+  { rank: 10, name: maskName("BetWizard"), wagered: "$6,280", prize: "$200" },
+  { rank: 11, name: maskName("AgusGamble"), wagered: "$5,740", prize: "-" },
+  { rank: 12, name: maskName("TheRusher"), wagered: "$5,180", prize: "-" },
+  { rank: 13, name: maskName("LuchoFan"), wagered: "$4,625", prize: "-" },
+  { rank: 14, name: maskName("SpinMaster"), wagered: "$4,110", prize: "-" },
+  { rank: 15, name: maskName("GonzaBet"), wagered: "$3,780", prize: "-" },
+  { rank: 16, name: maskName("HighRollerX"), wagered: "$3,240", prize: "-" },
+  { rank: 17, name: maskName("NahuelWin"), wagered: "$2,915", prize: "-" },
+  { rank: 18, name: maskName("TinchoSlots"), wagered: "$2,380", prize: "-" },
+  { rank: 19, name: maskName("CasinoWolf"), wagered: "$1,840", prize: "-" },
+  { rank: 20, name: maskName("ModoBonus"), wagered: "$1,120", prize: "-" },
 ];
 
 function CountdownTimer() {
