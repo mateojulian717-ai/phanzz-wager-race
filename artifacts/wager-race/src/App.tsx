@@ -287,9 +287,11 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
                 Monthly<br/>
                 <span className="text-primary drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">Wager Races</span>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed border-l-2 border-r-2 border-primary/50 pl-4 pr-4 text-left">
-                Play, wager and compete for a share of the prize pool.
-              </p>
+              <div className="flex justify-center">
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed border-l-2 border-r-2 border-primary/50 pl-4 pr-4 inline">
+                  Play, wager and compete for a share of the prize pool.
+                </p>
+              </div>
             </motion.div>
           </div>
         </section>
