@@ -327,12 +327,19 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
-              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
-              <div className="text-center mt-auto pt-6">
-                <p className="text-sm text-muted-foreground mb-3">$7,500 · Top 10 Paid</p>
-                <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                  View leaderboard <ChevronRight className="w-4 h-4" />
+              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[150px] object-contain" />
+
+              <div className="w-full flex flex-col items-center gap-2 my-auto py-4">
+                <p className="text-3xl font-black text-foreground tracking-tight">$7,500</p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">Prize Pool</p>
+                <div className="flex gap-2 mt-1">
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">Top 10 Paid</span>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-muted/50 border border-border/40 text-muted-foreground font-semibold">Monthly</span>
                 </div>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                View leaderboard <ChevronRight className="w-4 h-4" />
               </div>
             </motion.div>
 
