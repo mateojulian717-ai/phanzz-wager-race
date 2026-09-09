@@ -176,11 +176,15 @@ function LeaderboardView({
   logoSrc,
   players,
   stats,
+  heading,
+  description,
 }: {
   onBack: () => void;
   logoSrc: string;
   players: typeof PLAYERS;
   stats: typeof GAMBA_STATS;
+  heading: string;
+  description: string;
 }) {
   return (
     <motion.div
@@ -224,8 +228,8 @@ function LeaderboardView({
         <div className="container mx-auto max-w-4xl">
           {/* Title + big countdown */}
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-black mb-2 uppercase tracking-tight">Current Standings</h2>
-            <p className="text-muted-foreground mb-8">The race is hot. Keep wagering to secure your spot in the top 10.</p>
+            <h2 className="text-4xl font-black mb-2 uppercase tracking-tight">{heading}</h2>
+            <p className="text-muted-foreground mb-8">{description}</p>
             <BigCountdown />
           </div>
 
@@ -355,10 +359,14 @@ function HomeView({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-5 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group w-[300px] h-[300px] overflow-hidden shrink-0"
+              className="relative flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-5 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group w-[300px] h-[300px] overflow-hidden shrink-0"
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
+              <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-muted/70 border border-border/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                Finished
+              </span>
               <div className="h-40 w-full flex items-center justify-center">
                 <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
               </div>
@@ -373,7 +381,7 @@ function HomeView({
               </div>
 
               <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                View leaderboard <ChevronRight className="w-4 h-4" />
+                View final standings <ChevronRight className="w-4 h-4" />
               </div>
             </motion.div>
 
@@ -428,6 +436,10 @@ function MainContent() {
             logoSrc={view === 'kingz' ? '/kingz-logo.png' : '/gamba-logo.png'}
             players={view === 'kingz' ? [] : PLAYERS}
             stats={view === 'kingz' ? KINGZ_STATS : GAMBA_STATS}
+            heading={view === 'kingz' ? 'Current Standings' : 'Final Standings'}
+            description={view === 'kingz'
+              ? 'Standings will appear once the Kingz race begins.'
+              : 'This race has finished. Here are the final results.'}
           />
       }
     </AnimatePresence>
