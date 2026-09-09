@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, Play, Clock, Medal, Crown, Star, ArrowRight, ChevronRight, Dices, Users, DollarSign, Activity } from "lucide-react";
+import { Trophy, Play, Clock, Medal, Crown, Star, ArrowRight, ChevronRight, Users, DollarSign, Activity } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import NotFound from "@/pages/not-found";
 
@@ -36,6 +36,20 @@ const PLAYERS = [
   { rank: 18, name: maskName("TinchoSlots"), wagered: "$2,380.96", prize: "-" },
   { rank: 19, name: maskName("CasinoWolf"), wagered: "$1,840.29", prize: "-" },
   { rank: 20, name: maskName("ModoBonus"), wagered: "$1,120.74", prize: "-" },
+];
+
+const GAMBA_STATS = [
+  { label: "Prize Pool", value: "$7,500" },
+  { label: "Top Paid", value: "Top 10" },
+  { label: "Participants", value: "347" },
+  { label: "Total Wager", value: "$472,847.59" },
+];
+
+const KINGZ_STATS = [
+  { label: "Prize Pool", value: "-" },
+  { label: "Top Paid", value: "-" },
+  { label: "Participants", value: "-" },
+  { label: "Total Wager", value: "-" },
 ];
 
 function CountdownTimer() {
@@ -157,7 +171,17 @@ const BG_EFFECTS = (
   </div>
 );
 
-function LeaderboardView({ onBack }: { onBack: () => void }) {
+function LeaderboardView({
+  onBack,
+  logoSrc,
+  players,
+  stats,
+}: {
+  onBack: () => void;
+  logoSrc: string;
+  players: typeof PLAYERS;
+  stats: typeof GAMBA_STATS;
+}) {
   return (
     <motion.div
       key="leaderboard"
@@ -172,7 +196,7 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: 'url(/gamba-logo.png)',
+          backgroundImage: `url(${logoSrc})`,
           backgroundRepeat: 'repeat',
           backgroundSize: '220px',
           opacity: 0.04,
@@ -207,12 +231,7 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
 
           {/* Stats row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-            {[
-              { label: "Prize Pool", value: "$7,500" },
-              { label: "Top Paid",   value: "Top 10" },
-              { label: "Participants", value: "347" },
-              { label: "Total Wager", value: "$472,847.59" },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="bg-card border border-border/50 rounded-xl px-4 py-3 text-center">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{stat.label}</p>
                 <p className="text-lg font-bold text-foreground">{stat.value}</p>
@@ -233,7 +252,14 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {PLAYERS.map((player, index) => {
+                  {players.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="p-12 text-center">
+                        <p className="font-bold text-foreground">No results yet</p>
+                        <p className="text-sm text-muted-foreground mt-1">Standings will appear once the race begins.</p>
+                      </td>
+                    </tr>
+                  ) : players.map((player, index) => {
                     const isTop3 = player.rank <= 3;
                     const isPaid = player.rank <= 10;
                     let rankIcon = null;
@@ -266,7 +292,13 @@ function LeaderboardView({ onBack }: { onBack: () => void }) {
   );
 }
 
-function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
+function HomeView({
+  onViewLeaderboard,
+  onViewKingzLeaderboard,
+}: {
+  onViewLeaderboard: () => void;
+  onViewKingzLeaderboard: () => void;
+}) {
   return (
     <motion.div
       key="home"
@@ -317,7 +349,7 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
         </section>
 
         <section className="py-10 px-4">
-          <div className="container mx-auto max-w-3xl flex gap-4 justify-center">
+          <div className="container mx-auto max-w-[980px] flex gap-4 justify-center flex-wrap">
             {/* Gamba card */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -343,17 +375,31 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
               </div>
             </motion.div>
 
-            {/* Coming soon card */}
+            {/* Kingz card */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.22 }}
-              className="flex flex-col items-center justify-center bg-card/20 border border-border/20 rounded-2xl p-5 opacity-40 cursor-not-allowed select-none w-[300px] h-[300px] overflow-hidden shrink-0"
+              className="flex flex-col items-center justify-between bg-card border border-primary/20 rounded-2xl p-5 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)] transition-all cursor-pointer group w-[300px] h-[300px] overflow-hidden shrink-0"
+              onClick={onViewKingzLeaderboard}
+              data-testid="button-view-kingz-leaderboard"
             >
-              <Dices className="w-10 h-10 text-muted-foreground/30 mb-4" />
-              <p className="font-bold text-muted-foreground text-lg">More casinos</p>
-              <span className="text-xs font-bold uppercase tracking-widest text-primary/50 mt-2">Coming soon</span>
+              <img src="/kingz-logo.png" alt="Kingz" className="w-full max-w-[180px] object-contain" />
+
+              <div className="w-full flex flex-col items-center gap-1.5">
+                <p className="text-2xl font-black text-foreground tracking-tight">-</p>
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Prize Pool</p>
+                <div className="flex gap-1.5 mt-0.5">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">-</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted/50 border border-border/40 text-muted-foreground font-semibold">-</span>
+                </div>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                View leaderboard <ChevronRight className="w-4 h-4" />
+              </div>
             </motion.div>
+
           </div>
         </section>
       </main>
@@ -363,12 +409,22 @@ function HomeView({ onViewLeaderboard }: { onViewLeaderboard: () => void }) {
 }
 
 function MainContent() {
-  const [view, setView] = useState<'home' | 'leaderboard'>('home');
+  const [view, setView] = useState<'home' | 'leaderboard' | 'kingz'>('home');
   return (
     <AnimatePresence mode="wait">
       {view === 'home'
-        ? <HomeView key="home" onViewLeaderboard={() => { setView('leaderboard'); window.scrollTo(0, 0); }} />
-        : <LeaderboardView key="leaderboard" onBack={() => { setView('home'); window.scrollTo(0, 0); }} />
+        ? <HomeView
+            key="home"
+            onViewLeaderboard={() => { setView('leaderboard'); window.scrollTo(0, 0); }}
+            onViewKingzLeaderboard={() => { setView('kingz'); window.scrollTo(0, 0); }}
+          />
+        : <LeaderboardView
+            key={view}
+            onBack={() => { setView('home'); window.scrollTo(0, 0); }}
+            logoSrc={view === 'kingz' ? '/kingz-logo.png' : '/gamba-logo.png'}
+            players={view === 'kingz' ? [] : PLAYERS}
+            stats={view === 'kingz' ? KINGZ_STATS : GAMBA_STATS}
+          />
       }
     </AnimatePresence>
   );
