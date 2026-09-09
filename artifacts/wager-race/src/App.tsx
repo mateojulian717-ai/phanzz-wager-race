@@ -384,14 +384,14 @@ function HomeView({
               onClick={onViewKingzLeaderboard}
               data-testid="button-view-kingz-leaderboard"
             >
-              <img src="/kingz-logo.png" alt="Kingz" className="w-full max-w-[180px] object-contain" />
+              <img src="/kingz-logo.png" alt="Kingz" className="w-full max-w-[160px] object-contain" />
 
               <div className="w-full flex flex-col items-center gap-1.5">
-                <p className="text-2xl font-black text-foreground tracking-tight">-</p>
+                <p className="text-2xl font-black text-foreground tracking-tight">$2,000</p>
                 <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Prize Pool</p>
                 <div className="flex gap-1.5 mt-0.5">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">-</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted/50 border border-border/40 text-muted-foreground font-semibold">-</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">Top 10 Paid</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted/50 border border-border/40 text-muted-foreground font-semibold">Biweekly</span>
                 </div>
               </div>
 
