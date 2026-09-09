@@ -359,7 +359,9 @@ function HomeView({
               onClick={onViewLeaderboard}
               data-testid="button-view-leaderboard"
             >
-              <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
+              <div className="h-40 w-full flex items-center justify-center">
+                <img src="/gamba-logo.png" alt="Gamba" className="w-full max-w-[160px] object-contain" />
+              </div>
 
               <div className="w-full flex flex-col items-center gap-1.5">
                 <p className="text-2xl font-black text-foreground tracking-tight">$7,500</p>
@@ -384,7 +386,9 @@ function HomeView({
               onClick={onViewKingzLeaderboard}
               data-testid="button-view-kingz-leaderboard"
             >
-              <img src="/kingz-logo.png" alt="Kingz" className="w-full max-w-[160px] object-contain" />
+              <div className="h-40 w-full flex items-center justify-center">
+                <img src="/kingz-logo.png" alt="Kingz" className="w-full max-w-[160px] object-contain" />
+              </div>
 
               <div className="w-full flex flex-col items-center gap-1.5">
                 <p className="text-2xl font-black text-foreground tracking-tight">$2,000</p>
