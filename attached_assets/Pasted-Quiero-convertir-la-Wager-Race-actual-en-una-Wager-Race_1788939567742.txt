@@ -1,0 +1,45 @@
+Quiero convertir la Wager Race actual en una Wager Race real conectada a Kingz, manteniendo exactamente el diseño, las animaciones, la navegación y el estilo visual que ya tiene la página. No quiero que reconstruyas el frontend ni que crees otra página.
+
+Ya revisaste el proyecto y confirmaste que el leaderboard está hardcodeado en artifacts/wager-race/src/App.tsx, que existe un backend en artifacts/api-server y que no hay ninguna integración de Rainbet.
+
+API de Kingz
+
+Endpoint: https://leaderboard.kingz.win/v1/external/affiliates
+
+Método: GET. Parámetros: start_at, end_at y key.
+
+La API key debe leerse desde el Secret KINGZ_API_KEY. No la pongas en el código, no la expongas al navegador y no me pidas que la pegue en el chat del Agent.
+
+Primero verificá la respuesta real de Kingz. Hacé una consulta de prueba desde el backend e inspeccioná los campos que devuelve. No inventes nombres de propiedades ni supongas que existe un campo de wager determinado. Si falta la API key, indicame cómo agregarla a Secrets y continuá cuando esté disponible.
+
+Implementá un servicio backend para consultar Kingz y normalizar los datos de jugadores. La API devuelve todos los jugadores atribuidos a mis links, así que necesito poder excluir mi propia cuenta mediante una configuración de usernames o IDs excluidos.
+
+Leaderboard real
+
+Reemplazá el array estático PLAYERS por los datos reales de Kingz. Ordená a los jugadores por wager de mayor a menor, calculá sus posiciones y asigná los premios según la configuración de la carrera. Conservá el masking de nombres y el diseño actual de la tabla.
+
+Los participantes, el total wager, el prize pool, los puestos pagados y el countdown deben dejar de ser valores de ejemplo y pasar a depender de los datos reales y de la configuración de la carrera. No muestres estadísticas inventadas cuando la API todavía no haya respondido.
+
+Configuración de la carrera
+
+Por ahora quiero una configuración sencilla y fácil de modificar para definir fecha de inicio, fecha de finalización, prize pool, cantidad de puestos, premio de cada puesto y jugadores excluidos. No hace falta construir un panel Admin completo en esta primera etapa.
+
+El período debe enviarse a Kingz mediante start_at y end_at con formato YYYY-MM-DD. Verificá cómo interpreta Kingz los límites de cada día y la zona horaria. No uses la fecha antigua de junio que está hardcodeada actualmente. El countdown debe calcularse a partir de la fecha real configurada.
+
+Actualización y seguridad
+
+La consulta a Kingz debe hacerse exclusivamente desde el servidor. El frontend debe consultar un endpoint propio, por ejemplo /api/leaderboard, que devuelva solamente los datos necesarios para mostrar la carrera.
+
+Agregá caché y actualización automática con un intervalo razonable. Si Kingz devuelve un error, conservá los últimos datos válidos y mostrale al usuario un estado de error o actualización. No uses datos mock como reemplazo silencioso.
+
+Si Kingz devuelve totales acumulados del período, no los sumes nuevamente en cada actualización. Evitá duplicaciones y verificá que los importes y monedas se interpreten correctamente.
+
+Vercel y GitHub
+
+Mi página original sigue publicada en Vercel y el proyecto fue recuperado desde GitHub. Antes de implementar, revisá cómo está configurado el deployment actual y explicame dónde va a ejecutarse el backend de Kingz. La integración debe poder funcionar en producción sin depender de que el Replit esté abierto o ejecutándose.
+
+No publiques ni sobrescribas el deployment actual de Vercel todavía. Tampoco hagas push a GitHub sin avisarme. Primero implementá y probá todo en el preview de Replit.
+
+Conservá el diseño actual y modificá únicamente lo necesario para que la carrera use datos reales. Si la marca o los textos actuales de Gamba deben cambiarse para Kingz, mantené el mismo estilo visual y consultame antes de reemplazar logos o enlaces.
+
+Al terminar, mostrame qué archivos modificaste, qué campos reales devuelve Kingz, cómo se calcula el ranking, qué configuración debo completar y cómo quedaría preparado para publicarlo en Vercel.
