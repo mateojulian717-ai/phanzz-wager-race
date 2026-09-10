@@ -1,4 +1,4 @@
-import { getKingzLeaderboard } from "./_kingz";
+import { getKingzLeaderboard } from "./_kingz.js";
 
 type Request = {
   method?: string;
