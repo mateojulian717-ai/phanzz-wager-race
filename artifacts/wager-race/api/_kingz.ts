@@ -1,13 +1,13 @@
+/// <reference types="node" />
+
+import { URL } from "node:url";
+
 const KINGZ_AFFILIATES_ENDPOINT =
   "https://leaderboard.kingz.win/v1/external/affiliates";
 
 const DEFAULT_START_AT = "2026-09-08";
 const DEFAULT_END_AT = "2026-09-23";
 const CACHE_TTL_MS = 60_000;
-
-declare const process: {
-  env: Record<string, string | undefined>;
-};
 
 type RecordValue = Record<string, unknown>;
 
