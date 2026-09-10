@@ -1,0 +1,55 @@
+The Kingz API is now working and returns 4 real players. Implement the integration now.
+
+Use the exact real fields returned by Kingz:
+
+username = player username
+id = stable player ID
+wagered_amount = wager for the requested race period
+rank = current Kingz rank
+deposited_amount = deposits
+
+The API also returns:
+
+leaderboard.title
+leaderboard.start_date
+leaderboard.end_date
+leaderboard.status
+leaderboard.prizes
+cache_updated_at
+
+Replace the current hardcoded leaderboard data with the real Kingz data while preserving the existing PHANZZ/Kingz design exactly.
+
+Requirements:
+
+Create a secure server-side /api/leaderboard endpoint that calls the Kingz API using KINGZ_API_KEY. Never expose the Kingz key to the frontend.
+Use the active race period from the Kingz leaderboard metadata. Do not keep the old hardcoded June dates.
+Return the real affiliates records to the frontend in a normalized format.
+Display each player's username, wagered_amount, rank, and corresponding prize.
+Parse wagered_amount as a numeric value safely before formatting it as currency. Do not concatenate strings or accidentally treat it as text.
+Use leaderboard.prizes to assign prizes by place. Do not hardcode the prize distribution.
+Calculate:
+Participants = number of affiliates
+Total Wager = sum of all wagered_amount
+Prize Pool = sum of all leaderboard.prizes[].prize
+Top Paid = number of prize positions
+Countdown must use the real leaderboard.end_date.
+Preserve the existing username masking behavior unless it prevents distinguishing players.
+Refresh the leaderboard automatically at a reasonable interval, for example every 60 seconds.
+Show the latest cache_updated_at internally for debugging.
+If Kingz temporarily fails, do not show fake players. Keep the last valid response if available or show a clean error/loading state.
+
+IMPORTANT: inspect the current Vercel project/build configuration before deciding where to place the server endpoint. My production site is deployed on Vercel from this GitHub repository. The /api/leaderboard endpoint must work on Vercel in production and must not depend on the Replit workspace remaining online.
+
+Add KINGZ_API_KEY only as an environment variable. It already exists in Replit Secrets, but remind me that I will also need to add it to Vercel Environment Variables before production deployment.
+
+Test everything in Replit first. Verify that the page actually displays the 4 real players and their real wagers.
+
+Do not push to GitHub and do not deploy to Vercel yet. When finished, show me:
+
+the 4 players as rendered from the API
+calculated Total Wager
+Participants
+Prize Pool
+countdown end date
+files changed
+the exact production setup needed in Vercel
