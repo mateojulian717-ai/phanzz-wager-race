@@ -1,7 +1,3 @@
-/// <reference types="node" />
-
-import { URL } from "node:url";
-
 const KINGZ_AFFILIATES_ENDPOINT =
   "https://leaderboard.kingz.win/v1/external/affiliates";
 
@@ -16,6 +12,23 @@ type FetchResponse = {
   status: number;
   json(): Promise<unknown>;
 };
+
+type NodeRuntime = {
+  URL: new (input: string) => {
+    searchParams: {
+      set(name: string, value: string): void;
+    };
+  };
+  fetch(input: unknown): Promise<FetchResponse>;
+  process: {
+    env: Record<string, string | undefined>;
+  };
+};
+
+const nodeRuntime = globalThis as unknown as NodeRuntime;
+const URL = nodeRuntime.URL;
+const fetch = nodeRuntime.fetch;
+const process = nodeRuntime.process;
 
 export type LeaderboardResponse = {
   affiliates: Array<{
