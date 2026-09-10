@@ -11,6 +11,12 @@ const CACHE_TTL_MS = 60_000;
 
 type RecordValue = Record<string, unknown>;
 
+type FetchResponse = {
+  ok: boolean;
+  status: number;
+  json(): Promise<unknown>;
+};
+
 export type LeaderboardResponse = {
   affiliates: Array<{
     username: string;
@@ -148,7 +154,7 @@ export async function getKingzLeaderboard(): Promise<LeaderboardResponse> {
   url.searchParams.set("key", apiKey);
 
   try {
-    const response = await fetch(url);
+    const response = (await fetch(url)) as FetchResponse;
     if (!response.ok) throw new Error(`Kingz API returned HTTP ${response.status}`);
     const result = normalize(await response.json());
     lastValidResponse = result;
