@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route, Router as WouterRouter, Link } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -12,8 +12,55 @@ import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
 
-// Hardcoded Data
-const maskName = (name: string) => name.slice(0, 2) + "*".repeat(name.length - 2);
+type PlayerRow = {
+  rank: number;
+  name: string;
+  wagered: string;
+  prize: string;
+};
+
+type Stat = {
+  label: string;
+  value: string;
+};
+
+type KingzLeaderboardResponse = {
+  affiliates: Array<{
+    username: string;
+    id: string;
+    wagered_amount: string;
+    rank: number;
+    deposited_amount: string;
+    prize: string;
+  }>;
+  leaderboard: {
+    title: string;
+    start_date: string;
+    end_date: string;
+    type: string;
+    status: string;
+    prizes: Array<{ place: number; prize: string }>;
+  };
+  cache_updated_at: string;
+  stats: {
+    participants: number;
+    total_wager: string;
+    prize_pool: string;
+    top_paid: number;
+  };
+  stale?: boolean;
+};
+
+const maskName = (name: string) =>
+  name.length <= 2 ? `${name.slice(0, 1)}*` : name.slice(0, 2) + "*".repeat(name.length - 2);
+
+const formatCurrency = (value: string | number) => {
+  const amount =
+    typeof value === "number" ? value : Number(value.replace(/[^0-9.-]/g, ""));
+  return Number.isFinite(amount)
+    ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)
+    : "-";
+};
 
 const PLAYERS = [
   { rank: 1, name: maskName("RaffaKing"), wagered: "$80,842.17", prize: "$2,000" },
@@ -45,87 +92,14 @@ const GAMBA_STATS = [
   { label: "Total Wager", value: "$472,847.59" },
 ];
 
-const KINGZ_STATS = [
-  { label: "Prize Pool", value: "-" },
-  { label: "Top Paid", value: "-" },
-  { label: "Participants", value: "-" },
-  { label: "Total Wager", value: "-" },
-];
-
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({ days: 20, hours: 7, minutes: 49, seconds: 0 });
-
-  useEffect(() => {
-    const targetDate = new Date("2026-06-30T23:59:59-03:00");
-
-    const interval = setInterval(() => {
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
-
-      if (difference <= 0) {
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatNumber = (num: number) => num.toString().padStart(2, "0");
-
-  return (
-    <div className="flex flex-col items-center justify-center p-6 bg-card border border-primary/20 rounded-2xl shadow-[0_0_30px_rgba(236,72,153,0.15)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
-      <div className="flex items-center gap-2 mb-4 text-primary font-medium tracking-widest uppercase text-sm">
-        <Activity className="w-4 h-4 animate-pulse" />
-        Race ends in
-      </div>
-      <div className="flex items-center gap-4 text-center">
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-mono font-bold text-foreground drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-            {formatNumber(timeLeft.days)}
-          </span>
-          <span className="text-xs text-muted-foreground uppercase tracking-widest mt-1">Days</span>
-        </div>
-        <span className="text-3xl text-primary font-bold -mt-5">:</span>
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-mono font-bold text-foreground drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-            {formatNumber(timeLeft.hours)}
-          </span>
-          <span className="text-xs text-muted-foreground uppercase tracking-widest mt-1">Hrs</span>
-        </div>
-        <span className="text-3xl text-primary font-bold -mt-5">:</span>
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-mono font-bold text-foreground drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-            {formatNumber(timeLeft.minutes)}
-          </span>
-          <span className="text-xs text-muted-foreground uppercase tracking-widest mt-1">Mins</span>
-        </div>
-        <span className="text-3xl text-primary font-bold -mt-5">:</span>
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-mono font-bold text-primary drop-shadow-[0_0_15px_rgba(236,72,153,0.6)]">
-            {formatNumber(timeLeft.seconds)}
-          </span>
-          <span className="text-xs text-primary/70 uppercase tracking-widest mt-1">Secs</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BigCountdown() {
-  const TARGET = new Date("2026-06-30T23:59:59-03:00");
+function BigCountdown({ endDate }: { endDate: string }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
+    const target = new Date(
+      endDate.includes("T") ? endDate : `${endDate}T23:59:59-03:00`,
+    );
     const tick = () => {
-      const diff = TARGET.getTime() - Date.now();
+      const diff = target.getTime() - Date.now();
       if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
       setTimeLeft({
         days: Math.floor(diff / 86400000),
@@ -137,7 +111,7 @@ function BigCountdown() {
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [endDate]);
   const f = (n: number) => n.toString().padStart(2, "0");
   const units = [
     { value: f(timeLeft.days), label: "DAYS" },
@@ -178,13 +152,21 @@ function LeaderboardView({
   stats,
   heading,
   description,
+  endDate,
+  loading = false,
+  error,
+  cacheUpdatedAt,
 }: {
   onBack: () => void;
   logoSrc: string;
-  players: typeof PLAYERS;
-  stats: typeof GAMBA_STATS;
+  players: PlayerRow[];
+  stats: Stat[];
   heading: string;
   description: string;
+  endDate: string;
+  loading?: boolean;
+  error?: string;
+  cacheUpdatedAt?: string;
 }) {
   return (
     <motion.div
@@ -230,7 +212,7 @@ function LeaderboardView({
           <div className="text-center mb-8">
             <h2 className="text-4xl font-black mb-2 uppercase tracking-tight">{heading}</h2>
             <p className="text-muted-foreground mb-8">{description}</p>
-            <BigCountdown />
+            <BigCountdown endDate={endDate} />
           </div>
 
           {/* Stats row */}
@@ -256,7 +238,21 @@ function LeaderboardView({
                   </tr>
                 </thead>
                 <tbody>
-                  {players.length === 0 ? (
+                  {loading ? (
+                    <tr>
+                      <td colSpan={4} className="p-12 text-center">
+                        <p className="font-bold text-foreground">Loading standings</p>
+                        <p className="text-sm text-muted-foreground mt-1">Fetching the latest Kingz race data.</p>
+                      </td>
+                    </tr>
+                  ) : error ? (
+                    <tr>
+                      <td colSpan={4} className="p-12 text-center">
+                        <p className="font-bold text-foreground">Standings unavailable</p>
+                        <p className="text-sm text-muted-foreground mt-1">{error}</p>
+                      </td>
+                    </tr>
+                  ) : players.length === 0 ? (
                     <tr>
                       <td colSpan={4} className="p-12 text-center">
                         <p className="font-bold text-foreground">No results yet</p>
@@ -290,6 +286,11 @@ function LeaderboardView({
               </table>
             </div>
           </div>
+          {cacheUpdatedAt && (
+            <span className="sr-only" data-testid="kingz-cache-updated-at">
+              {cacheUpdatedAt}
+            </span>
+          )}
         </div>
       </main>
     </motion.div>
@@ -299,9 +300,11 @@ function LeaderboardView({
 function HomeView({
   onViewLeaderboard,
   onViewKingzLeaderboard,
+  kingzStats,
 }: {
   onViewLeaderboard: () => void;
   onViewKingzLeaderboard: () => void;
+  kingzStats: Stat[];
 }) {
   return (
     <motion.div
@@ -399,10 +402,14 @@ function HomeView({
               </div>
 
               <div className="w-full flex flex-col items-center gap-1.5">
-                <p className="text-2xl font-black text-foreground tracking-tight">$2,000</p>
+                <p className="text-2xl font-black text-foreground tracking-tight">
+                  {kingzStats.find((stat) => stat.label === "Prize Pool")?.value ?? "-"}
+                </p>
                 <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Prize Pool</p>
                 <div className="flex gap-1.5 mt-0.5">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">Top 10 Paid</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold">
+                    {kingzStats.find((stat) => stat.label === "Top Paid")?.value ?? "-"}
+                  </span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted/50 border border-border/40 text-muted-foreground font-semibold">Biweekly</span>
                 </div>
               </div>
@@ -422,6 +429,38 @@ function HomeView({
 
 function MainContent() {
   const [view, setView] = useState<'home' | 'leaderboard' | 'kingz'>('home');
+  const kingzQuery = useQuery<KingzLeaderboardResponse>({
+    queryKey: ["kingz-leaderboard"],
+    queryFn: async () => {
+      const response = await fetch("/api/leaderboard");
+      if (!response.ok) {
+        throw new Error("The Kingz leaderboard is temporarily unavailable.");
+      }
+      return response.json() as Promise<KingzLeaderboardResponse>;
+    },
+    refetchInterval: 60_000,
+    retry: 1,
+  });
+
+  const kingzData = kingzQuery.data;
+  const kingzPlayers: PlayerRow[] = kingzData?.affiliates.map((player) => ({
+    rank: player.rank,
+    name: maskName(player.username),
+    wagered: formatCurrency(player.wagered_amount),
+    prize: player.prize ? formatCurrency(player.prize) : "-",
+  })) ?? [];
+  const kingzStats: Stat[] = [
+    { label: "Prize Pool", value: kingzData ? formatCurrency(kingzData.stats.prize_pool) : "-" },
+    { label: "Top Paid", value: kingzData ? `Top ${kingzData.stats.top_paid}` : "-" },
+    { label: "Participants", value: kingzData ? String(kingzData.stats.participants) : "-" },
+    { label: "Total Wager", value: kingzData ? formatCurrency(kingzData.stats.total_wager) : "-" },
+  ];
+  const kingzError = kingzQuery.isError
+    ? "Unable to load the latest Kingz standings."
+    : kingzData?.stale
+      ? "Showing the last valid Kingz update."
+      : undefined;
+
   return (
     <AnimatePresence mode="wait">
       {view === 'home'
@@ -429,17 +468,22 @@ function MainContent() {
             key="home"
             onViewLeaderboard={() => { setView('leaderboard'); window.scrollTo(0, 0); }}
             onViewKingzLeaderboard={() => { setView('kingz'); window.scrollTo(0, 0); }}
+            kingzStats={kingzStats}
           />
         : <LeaderboardView
             key={view}
             onBack={() => { setView('home'); window.scrollTo(0, 0); }}
             logoSrc={view === 'kingz' ? '/kingz-logo.png' : '/gamba-logo.png'}
-            players={view === 'kingz' ? [] : PLAYERS}
-            stats={view === 'kingz' ? KINGZ_STATS : GAMBA_STATS}
+            players={view === 'kingz' ? kingzPlayers : PLAYERS}
+            stats={view === 'kingz' ? kingzStats : GAMBA_STATS}
             heading={view === 'kingz' ? 'Current Standings' : 'Final Standings'}
             description={view === 'kingz'
-              ? 'Standings will appear once the Kingz race begins.'
+              ? kingzData?.leaderboard.title ?? 'Current Kingz standings'
               : 'This race has finished. Here are the final results.'}
+            endDate={view === 'kingz' ? kingzData?.leaderboard.end_date ?? "2026-09-23" : "2026-06-30"}
+            loading={view === 'kingz' && kingzQuery.isLoading}
+            error={view === 'kingz' ? kingzError : undefined}
+            cacheUpdatedAt={view === 'kingz' ? kingzData?.cache_updated_at : undefined}
           />
       }
     </AnimatePresence>

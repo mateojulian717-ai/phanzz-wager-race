@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: leaderboard
+    description: Kingz wager race operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /leaderboard:
+    get:
+      operationId: getLeaderboard
+      tags: [leaderboard]
+      summary: Get the active Kingz leaderboard
+      responses:
+        "200":
+          description: Current Kingz leaderboard data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeaderboardResponse"
+        "502":
+          description: Kingz is temporarily unavailable
 components:
   schemas:
     HealthStatus:
@@ -33,4 +49,96 @@ components:
           type: string
       required:
         - status
+    LeaderboardResponse:
+      type: object
+      required:
+        - affiliates
+        - leaderboard
+        - cache_updated_at
+        - stats
+      properties:
+        affiliates:
+          type: array
+          items:
+            $ref: "#/components/schemas/LeaderboardAffiliate"
+        leaderboard:
+          $ref: "#/components/schemas/KingzLeaderboard"
+        cache_updated_at:
+          type: string
+        stale:
+          type: boolean
+        stats:
+          $ref: "#/components/schemas/LeaderboardStats"
+    LeaderboardAffiliate:
+      type: object
+      required:
+        - username
+        - id
+        - wagered_amount
+        - rank
+        - deposited_amount
+        - prize
+      properties:
+        username:
+          type: string
+        id:
+          type: string
+        wagered_amount:
+          type: string
+        rank:
+          type: number
+        deposited_amount:
+          type: string
+        prize:
+          type: string
+    KingzLeaderboard:
+      type: object
+      required:
+        - title
+        - start_date
+        - end_date
+        - type
+        - status
+        - prizes
+      properties:
+        title:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        prizes:
+          type: array
+          items:
+            $ref: "#/components/schemas/LeaderboardPrize"
+    LeaderboardPrize:
+      type: object
+      required:
+        - place
+        - prize
+      properties:
+        place:
+          type: number
+        prize:
+          type: string
+    LeaderboardStats:
+      type: object
+      required:
+        - participants
+        - total_wager
+        - prize_pool
+        - top_paid
+      properties:
+        participants:
+          type: number
+        total_wager:
+          type: string
+        prize_pool:
+          type: string
+        top_paid:
+          type: number
 

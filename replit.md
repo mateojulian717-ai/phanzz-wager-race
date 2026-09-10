@@ -9,7 +9,8 @@ A React/Vite single-page web experience comparing wagering activity in a race-st
 - `pnpm --filter @workspace/wager-race run typecheck` — typecheck the web app
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
-- No additional environment secrets are required.
+- `KINGZ_API_KEY` is required by the server-side Kingz leaderboard route. It must be set in Replit Secrets for the Replit preview and in Vercel Environment Variables for production.
+- `KINGZ_RACE_START_AT` and `KINGZ_RACE_END_AT` are optional server variables; when omitted, the active PHANZZ period defaults to `2026-09-08` through `2026-09-23`.
 
 ## Stack
 
@@ -27,7 +28,10 @@ A React/Vite single-page web experience comparing wagering activity in a race-st
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Kingz credentials never reach the browser. Replit serves `/api/leaderboard` through the API server, while Vercel uses the colocated `api/leaderboard.ts` function.
+- Kingz `wagered_amount` and prize values are returned as strings by the provider, parsed server-side, and summed before the frontend formats them as USD.
+- The server keeps the last valid Kingz response in memory and marks it `stale` if a refresh fails; the frontend polls every 60 seconds and never substitutes mock players.
+- The frontend uses `leaderboard.start_date` and `leaderboard.end_date` from the live response for the active race countdown.
 
 ## Product
 
@@ -39,7 +43,9 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Kingz does not return a currency field. The current visual presentation formats the provider amounts as USD.
+- The active endpoint requires a date range before it can return `leaderboard` metadata, so the server uses the configured active-period defaults to make the initial request.
+- Vercel must have `KINGZ_API_KEY` configured separately from Replit; the `.vercel/project.json` file only links the existing `phanzz-wager-race` project.
 
 ## Pointers
 
